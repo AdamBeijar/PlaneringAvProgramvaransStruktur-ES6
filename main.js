@@ -31,9 +31,36 @@ let datanoms = [
 	{ name: 'Max', occupation: 'student', age: 17 },
 	{ name: 'Isak', occupation: 'student', age: 17 }
 ];
+let ages = [];
+let result = 0;
 for(let i=0; i < datanoms.length; i++) {
-	if(datanoms[i].occupation === 'teacher') {
-	  teachers.push(datanoms[i]); //lägger till teachers arrayn
-	}
+	ages.push(datanoms[i].age);
 }
-console.log(datanoms)
+function totalAge(total, num) {
+  return total + num;
+}
+const showShortcuts = () => {
+	let output = `
+	<tr>
+		<th>Name</th>
+		<th>Occupation</th>
+		<th>Age</th>
+  	</tr>`
+	datanoms.forEach(
+	  ({ name, occupation, age }) =>
+		(output += `
+		<tr>
+			<td>${name}</td>
+			<td>${occupation}</td>
+			<td>${age}</td>
+		</tr>`)
+	)
+	output += `
+		<tr>
+			<td>Total Age</td>
+			<td></td>
+			<td>${ages.reduce(totalAge)}</td>
+		</tr>`
+	document.querySelector("table").innerHTML = output
+}
+showShortcuts()
